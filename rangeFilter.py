@@ -24,15 +24,15 @@ from rangeSlider import RangeSlider
 from datetime import date, datetime
 
 class RangeFilter(QtGui.QWidget):
-	""" A widget to select int ranges. 
-		It displays a RangeSlider between two QSpinbox widgets. 
+    """ A widget to select int ranges. 
+        It displays a RangeSlider between two QSpinbox widgets. 
 
-		@emit lowValueChanged signal when the low value is changed
-		@emit highValueChanged signal when the high value is changed
-		@emit valuesChanged signal when either the low or high value is changed
-		@emit changeFinished signal when the slider is released in a new 
-				position or the spinboxes editing finished
-	"""
+        @emit lowValueChanged signal when the low value is changed
+        @emit highValueChanged signal when the high value is changed
+        @emit valuesChanged signal when either the low or high value is changed
+        @emit changeFinished signal when the slider is released in a new 
+                position or the spinboxes editing finished
+    """
 
     def __init__(self, *args):
         super(RangeFilter, self).__init__(*args)
@@ -87,29 +87,29 @@ class RangeFilter(QtGui.QWidget):
 
 
     def orientation(self):
-		""" Get the widget orientation. """
+        """ Get the widget orientation. """
         return self.slider.orientation()
 
     def setOrientation(self, val):
-		""" Set the widget orientation. """
+        """ Set the widget orientation. """
         self.slider.setOrientation( val )
         self._updateUi()
 
     def isActive(self):
-		""" Check if the filter widget has low or high values different 
-			from respectively the mininimum and maximum values.
+        """ Check if the filter widget has low or high values different 
+            from respectively the mininimum and maximum values.
 
-			@returns True if low value is greather than the minimum OR 
-					the high value is less than the maximum, False otherwise
-		"""
+            @returns True if low value is greather than the minimum OR 
+                    the high value is less than the maximum, False otherwise
+        """
         return self.lowValue() > self.minimum() or self.highValue() < self.maximum()
 
 
     def checkValue(self, val):
-		""" Check if val is within the range [min, max]. 
+        """ Check if val is within the range [min, max]. 
 
-			@returns True if val is in the range, False otherwise
-		"""
+            @returns True if val is in the range, False otherwise
+        """
 
         val = self._getValue(val)
         if val is None: return False
@@ -124,15 +124,15 @@ class RangeFilter(QtGui.QWidget):
 
 
     def minimum(self):
-		""" Get the minimum value. """
+        """ Get the minimum value. """
         return self.minSpin.minimum()
 
     def maximum(self):
-		""" Get the maximum value. """
+        """ Get the maximum value. """
         return self.maxSpin.maximum()
 
     def setMinimum(self, value):
-		""" Set the minimum value. """
+        """ Set the minimum value. """
 
         val = self._getValue( value )
         if val is None:
@@ -143,7 +143,7 @@ class RangeFilter(QtGui.QWidget):
         self.slider.setMinimum( self._toSliderValue(val) )
 
     def setMaximum(self, value):
-		""" Set the maximum value. """
+        """ Set the maximum value. """
 
         val = self._getValue( value )
         if val is None:
@@ -168,7 +168,7 @@ class RangeFilter(QtGui.QWidget):
         return self.maxSpin.value()
 
     def setLowValue(self, value):
-		""" Set the low value. """
+        """ Set the low value. """
 
         val = self._getValue( value )
         if val is None:
@@ -192,7 +192,7 @@ class RangeFilter(QtGui.QWidget):
         self.emit( QtCore.SIGNAL("lowValueChanged"), val )
 
     def setHighValue(self, value):
-		""" Set the high value. """
+        """ Set the high value. """
 
         val = self._getValue( value )
         if val is None:
@@ -262,11 +262,11 @@ class RangeFilter(QtGui.QWidget):
 
 
 class DoubleRangeFilter(RangeFilter):
-	""" A widget to select double ranges. 
-		It displays a RangeSlider between two QDoubleSpinBox widgets. 
+    """ A widget to select double ranges. 
+        It displays a RangeSlider between two QDoubleSpinBox widgets. 
 
-		@inherits RangeFilter
-	"""
+        @inherits RangeFilter
+    """
 
     def __init__(self, *args):
         super(DoubleRangeFilter, self).__init__(*args)
@@ -279,11 +279,11 @@ class DoubleRangeFilter(RangeFilter):
 
 
     def decimals(self):
-		""" Get the precision of the spinboxes, in decimals. """
+        """ Get the precision of the spinboxes, in decimals. """
         return self.minSpin.decimals()
 
     def setDecimals(self, val):
-		""" Set the precision of the spinboxes, in decimals. """
+        """ Set the precision of the spinboxes, in decimals. """
         self.minSpin.setDecimals(val)
         self.maxSpin.setDecimals(val)
 
@@ -315,15 +315,15 @@ class DoubleRangeFilter(RangeFilter):
 
 
 class DateRangeFilter(RangeFilter):
-	""" A widget to select date ranges.
-		It displays a RangeSlider between two QDateEdit widgets.
+    """ A widget to select date ranges.
+        It displays a RangeSlider between two QDateEdit widgets.
 
-		Limitations:
-			the minimum date the filter works is 1970.01.01, that value depends 
-			on the range of time_t valid values.
+        Limitations:
+            the minimum date the filter works is 1970.01.01, that value depends 
+            on the range of time_t valid values.
 
-		@inherits RangeFilter
-	"""
+        @inherits RangeFilter
+    """
 
     def __init__(self, *args):
         super(DateRangeFilter, self).__init__(*args)
