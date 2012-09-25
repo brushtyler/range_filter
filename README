@@ -1,0 +1,19 @@
+RangeSlider, RangeFilter, DoubleRangeFilter, DateRangeFilter
+Copyright (c) 2012 by Giuseppe Sucameli (brush.tyler@gmail.com) 
+
+Licensed under the terms of GNU GPL v2 (or any later)
+http://www.gnu.org/copyleft/gpl.html
+
+
+
+RangeSlider class provides a dual-slider for range.
+
+RangeFilter class provides a filter widget which contains a RangeSlider 
+	between two QSpinBox widgets.
+
+DoubleRangeFilter class provides a filter widget which contains a RangeSlider 
+	between	two QDoubleSpinBox widgets.
+
+DateRangeFilter class provides a filter widget which contains a RangeSlider 
+	between	two QDateEdit widgets.
+
